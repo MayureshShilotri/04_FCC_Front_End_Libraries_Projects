@@ -1,5 +1,8 @@
 // DOM is ready
 document.addEventListener("DOMContentLoaded", function() {
+  getNewQuote();
+});
+
   // DATA
   const quotesPool = [
     ["Less is More", "Ludwig Mies Van Der Rohe"],
@@ -25,16 +28,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var quote = document.getElementById("text");
     var author = document.getElementById("author");
     var randomIndex = Math.floor((Math.random() * quotesPool.length) + 1);
-
-    randomQuoteButton.addEventListener("click", function() {
-      quote.innerHTML = quotesPool[randomIndex][0];
-      author.innerHTML = quotesPool[randomIndex][1];
-    });
+    quote.innerHTML = quotesPool[randomIndex][0];
+    author.innerHTML = quotesPool[randomIndex][1];
   }
 
   // Get 1ST quote
-  window.onload = function() {
-    getNewQuote();
-  };
-
-});
+  getNewQuote();
