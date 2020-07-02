@@ -1,44 +1,40 @@
 import React, {Component} from 'react';
 import './App.css';
-import Form from 'react-bootstrap/Form';
-//import Marked from 'react-bootstrap/marked';
+import Marked from '../node_modules/marked';
 
-//let marked = require("marked");
+let marked = require("marked");
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      markdown: ""
-    };
-    this.updateMarkdown = this.updateMarkdown.bind(this);
+class App extends React.Component {
+  state = {
+    input: ''
   }
-state = {
 
-}
+  handleChange = (e) => {
+    this.setState({
+      input: e.target.value
+    })
+  }
 
-updateMarkdown(markdown){
-  this.setState({markdown});
-}
-
-render() {
-  let {markdown} = this.state;
-  console.log(markdown);
-  return (
-    <div className="App">
+  render() {
+    const {input} = this.state;
+    const markdown = marked(input);
+    return (
       <div>
-      <Form.Group controlId="formGroupEmail">
-        <Form.Label>Markdown Input Field</Form.Label>
-        <Form.Control as="textarea" placeholder = "Enter markdown here" rows="3" value = {markdown} onChange = {this.updateMarkdown}/>
-      </Form.Group>
+        <h1>Markdown Previewer</h1>
+        <div>
+          <div>
+          <h3>Enter Here</h3>
+            <textarea className = "form-control" id="editor" value = {input} onChange = {this.handleChange}/>
+          </div>
+          <div id="preview">
+            <h3>See Here</h3>
+            <div dangerouslySetInnerHTML = {{__html: markdown}}>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
-        <h1>Markdown Output</h1>
-        <div></div>
-      </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
 export default App;
