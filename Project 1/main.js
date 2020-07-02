@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var randomIndex = Math.floor((Math.random() * quotesPool.length) + 1);
     quote.innerHTML = quotesPool[randomIndex][0];
     author.innerHTML = quotesPool[randomIndex][1];
+    let tweet = document.getElementById("tweet-quote");
+    tweet.href = 'https://twitter.com/intent/tweet?text="' + quotesPool[randomIndex][0] + '" -' + quotesPool[randomIndex][1];
   }
 
   // Get 1ST quote
